@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Todo List</string>
+    <string name="write_your_next_task">Write your next task</string>
+    <string name="use_long_click_on_any_item_to_remove_it">Use long click on any item to remove it</string>
+    <string name="todo">TODO</string>
+    <string name="add_button">add Button</string>
+</resources>
