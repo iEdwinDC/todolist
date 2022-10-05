@@ -8,33 +8,41 @@ import java.io.FileOutputStream
 class FileToSave(private val context: Context) {
 
     fun readFile(): ArrayList<String> {
-
-        val path: File = context.filesDir
-        val file: File = File(path, "list.txt")
-
-        val length = file.length().toInt()
-        val bytes = ByteArray(length)
-        val readFile = FileInputStream(file)
         try {
-            readFile.read(bytes)
-        } finally {
-            readFile.close()
-        }
-        val contents = String(bytes)
+            val path: File = context.filesDir
+            val file: File = File(path, "list.txt")
 
-        return arrayConvert(contents)
+            val length = file.length().toInt()
+            val bytes = ByteArray(length)
+            val readFile = FileInputStream(file)
+            try {
+                readFile.read(bytes)
+            } finally {
+                readFile.close()
+            }
+            val contents = String(bytes)
+
+            return arrayConvert(contents)
+        } catch (exception: Exception) {
+            return arrayListOf()
+
+        }
     }
 
     fun saveFile(arrayList: ArrayList<String>) {
-
-        val path: File = context.filesDir
-        val file: File = File(path, "list.txt")
-
-        val stream = FileOutputStream(file)
         try {
-            stream.write(stringConvert(arrayList).toByteArray())
-        } finally {
-            stream.close()
+            val path: File = context.filesDir
+            val file: File = File(path, "list.txt")
+
+            val stream = FileOutputStream(file)
+            try {
+                stream.write(stringConvert(arrayList).toByteArray())
+            } finally {
+                stream.close()
+            }
+        } catch (exception: Exception) {
+
+
         }
     }
 
