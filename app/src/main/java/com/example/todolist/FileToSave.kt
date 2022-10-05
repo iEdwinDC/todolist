@@ -15,10 +15,8 @@ class FileToSave(private val context: Context) {
             val length = file.length().toInt()
             val bytes = ByteArray(length)
             val readFile = FileInputStream(file)
-            try {
+            readFile.use { readFile ->
                 readFile.read(bytes)
-            } finally {
-                readFile.close()
             }
             val contents = String(bytes)
 
@@ -35,10 +33,8 @@ class FileToSave(private val context: Context) {
             val file: File = File(path, "list.txt")
 
             val stream = FileOutputStream(file)
-            try {
+            stream.use { stream ->
                 stream.write(stringConvert(arrayList).toByteArray())
-            } finally {
-                stream.close()
             }
         } catch (exception: Exception) {
 
